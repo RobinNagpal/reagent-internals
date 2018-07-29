@@ -52,7 +52,7 @@
               :optimizations :advanced
               :pretty-print  false}}
             :app
-            {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs"]
+            {:source-paths ["src/cljs" "src/cljc" "env/dev/cljs" "third-party/reagent/src"]
              :figwheel {:on-jsload "reagent-internals.core/mount-root"}
              :compiler
              {:main "reagent-internals.dev"
