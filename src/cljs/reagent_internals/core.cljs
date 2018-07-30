@@ -31,6 +31,14 @@
 (def app-var2-reaction (reagent.ratom/make-reaction
                          #(get-in @app-state [:state-var-2 :var-a])))
 
+
+(def counter (ratom/atom 4))
+
+(defn counter-component []
+  [:div
+   [:h3 "counter-component"]
+   [:div "counter : " @counter]])
+
 (defn component-using-make-reaction []
   [:div#component-using-make-reaction
    [:div>h3 "component-using-make-reaction"]
@@ -45,7 +53,8 @@
 (defn components []
   [:div
    [component-using-atom]
-   [component-using-make-reaction]])
+   [component-using-make-reaction]
+   [counter-component]])
 
 
 
