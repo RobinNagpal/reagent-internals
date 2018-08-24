@@ -50,11 +50,36 @@
    [:div "Sate 1 - var1 : " (get-in @app-state [:state-var-1 :var-a])]])
 
 
+(defn form1 [a]
+  [:div
+   [:div "form1 props = " (pr-str (reagent/props (reagent/current-component)))]
+   [:div "form1 children = " (pr-str (reagent/children (reagent/current-component)))]])
+
+(defn form2 [a]
+  (fn [a]
+    [:div
+     [:div "form2 props = " (pr-str (reagent/props (reagent/current-component)))]
+     [:div "form2 children = " (pr-str (reagent/children (reagent/current-component)))]]))
+
+(defn test-component
+  []
+  [:div
+   [form1 {:a 1}]
+   [form1 17]
+   [form2 {:a 1}]
+   [form2 17]])
+
+(defn simple-component [greeting name]
+  [:div {:style {:color "blue"}}
+   [:span greeting] [:span name] "!"])
+
 (defn components []
   [:div
-   [component-using-atom]
-   [component-using-make-reaction]
-   [counter-component]])
+   #_[component-using-atom]
+   #_[component-using-make-reaction]
+   #_[counter-component]
+   #_[test-component]
+   [simple-component "Good Morning " "Robin Nagpal"]])
 
 
 
@@ -68,7 +93,9 @@
 ;; Initialize app
 
 (defn mount-root []
-  (reagent/render [components] (.getElementById js/document "app")))
+  (reagent/render
+    [simple-component "Good Morning " "Robin Nagpal"]
+    (.getElementById js/document "app")))
 
 (defn init! []
   (accountant/configure-navigation!
