@@ -25,8 +25,24 @@ and now want to understand what exactly is happening behind the scenes.
 
 If we try to debug the rendered component in [react developer tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 we can relate how reagent converts function to a react component.
- 
 
+This is done in following steps
+
+### 1. Determine element type 
+
+### 2. Looks for component in cache
+Reagent checks if the component is already present with this name(fully qualified) 
+in the cache. Reagent doesn't keep a separate cache, but it looks for the property
+`:cljsReactClass` on that function, if not present it creates a new component
+of the function and sets `:cljsReactClass` property as newly created component 
+class. Next time the same cljs function/component is accessed, the react component
+set on `:cljsReactClass` will be reused. 
+
+
+
+### 3. Creates new
+            
+### 4.  
 
 # Updating the component
 
